@@ -59,7 +59,7 @@ describe('Sort', function(){
 				}
 	}
 
-	
+
 	describe('Any list by any attribute', function(){
 		/*function sort(list, attrName){
 			for(var i = 0; i < list.length-1; i++)
@@ -113,15 +113,27 @@ describe('Sort', function(){
 	});
 });
 
-/*describe('Filter', function(){
+describe('Filter', function(){
 	describe('Default Filter [ all stationary products ]', function(){
-		console.table(products);
+		function filter(){
+
+		}
+		var stationaryProducts = filter();
+		console.table(stationaryProducts);
 	});
 
 	describe('Any list by any criteria', function(){
+		function filter(){
+
+		}
 		describe('All costly products [ cost > 50 ]', function(){
-			//sort
-			console.table(products);
+			var cosltyProducts = filter();
+			console.table(cosltyProducts);
+		});
+
+		describe('All under stocked products [ units < 50 ]', function(){
+			var underStockedProducts = filter();
+			console.table(underStockedProducts);
 		});
 	});
-});*/
+});
