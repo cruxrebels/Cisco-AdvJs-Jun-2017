@@ -1,0 +1,27 @@
+{
+  "name": "es6-app",
+  "version": "0.1.0",
+  "description": "a sample app for demonstrating es6",
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "browserify src/app.js -t babelify --outfile dist/app.js"
+  },
+  "keywords": [
+    "es6",
+    "demo",
+    "babel"
+  ],
+  "author": "Magesh K",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "babelify": "^7.3.0"
+  }
+}
