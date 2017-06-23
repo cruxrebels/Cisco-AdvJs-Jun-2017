@@ -5,11 +5,11 @@ groupBy
 */
 
 var products = [
-	{id : 7, name : 'Pen', cost : 40, units : 60, catgory : 'stationary'},
-	{id : 4, name : 'Len', cost : 80, units : 30, catgory : 'grocery'},
-	{id : 9, name : 'Ten', cost : 90, units : 50, catgory : 'stationary'},
-	{id : 5, name : 'Den', cost : 50, units : 40, catgory : 'stationary'},
-	{id : 6, name : 'Ken', cost : 20, units : 70, catgory : 'grocery'},
+	{id : 7, name : 'Pen', cost : 40, units : 60, category : 'stationary'},
+	{id : 4, name : 'Len', cost : 80, units : 30, category : 'grocery'},
+	{id : 9, name : 'Ten', cost : 90, units : 50, category : 'stationary'},
+	{id : 5, name : 'Den', cost : 50, units : 40, category : 'stationary'},
+	{id : 6, name : 'Ken', cost : 20, units : 70, category : 'grocery'},
 ];
 
 function describe(title, fn){
@@ -116,23 +116,37 @@ describe('Sort', function(){
 describe('Filter', function(){
 	describe('Default Filter [ all stationary products ]', function(){
 		function filter(){
-
+			var result = [];
+			for(var index = 0; index < products.length; index++)
+				if (products[index].category === 'stationary')
+					result.push(products[index]);
+			return result;
 		}
 		var stationaryProducts = filter();
 		console.table(stationaryProducts);
 	});
 
 	describe('Any list by any criteria', function(){
-		function filter(){
-
+		function filter(list, criteriaFn){
+			var result = [];
+			for(var index = 0; index < list.length; index++)
+				if (criteriaFn(list[index]))
+					result.push(list[index]);
+			return result;
 		}
 		describe('All costly products [ cost > 50 ]', function(){
-			var cosltyProducts = filter();
+			var costlyProductCriteria = function(product){
+				return product.cost > 50;
+			}
+			var cosltyProducts = filter(products, costlyProductCriteria);
 			console.table(cosltyProducts);
 		});
 
 		describe('All under stocked products [ units < 50 ]', function(){
-			var underStockedProducts = filter();
+			var underStockedProductCriteria = function(product){
+				return product.units < 50;
+			};
+			var underStockedProducts = filter(products, underStockedProductCriteria);
 			console.table(underStockedProducts);
 		});
 	});
