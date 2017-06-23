@@ -25,11 +25,14 @@ var isPrime = memoize(function (no){
 
 
 //The below implementation works with any function with any number of arguments
-function memoize(fn){
+function memoize(fn, keyGen){
 	var cache = {};
 
 	return function(){
 		var key = JSON.stringify(arguments);
+		if (keyGen){
+			key = keyGen.apply(this, arguments);
+		}
 		if (typeof cache[key] === 'undefined')
 			cache[key] = fn.apply(this, arguments);
 		return cache[key];
